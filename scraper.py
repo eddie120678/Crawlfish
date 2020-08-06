@@ -4,7 +4,7 @@ import urllib2
 pageOpener = urllib2.build_opener()
 pageOpener.addheaders = [{'User-agent', 'Mozilla/5.0'}]
 
-url = ('https://nodejs.org/en/')
+url = raw_input("Enter a web page: ")
 
 openURL = pageOpener.open(url).read()
 
