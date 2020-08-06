@@ -9,3 +9,6 @@ url = raw_input("Enter a web page: ")
 openURL = pageOpener.open(url).read()
 
 print(openURL)
+for word in openURL.split(' '):
+    if word.startswith('href'):
+        print(word)
