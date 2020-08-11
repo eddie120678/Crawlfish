@@ -1,9 +1,7 @@
 # this is a webcrawler
 import urllib.request
 import urllib.parse
-
-
-
+import re
 
 
 myHeader =  {'User-Agent':'Mozilla/5.0'}
@@ -12,6 +10,7 @@ def ask_user():
     url = input("Enter a url for me to visit: ")
     if url == "":
         url = "http://phobos.ninja"
+        print("Fetching default page http://phobos.ninja because it is teh awesomeness!\n")
     elif not url.startswith("http"):
         url = "https://" + url
         print("I added https:// for you, you lazy bastard!\n")
@@ -22,8 +21,19 @@ def ask_user():
 def get_page(page):
 
     pageData = urllib.request.urlopen(page)
-    readData = pageData.read()
-    print(readData)
+    return pageData
 
+
+#find the links in data
+def find_links(my_data):
+    my_data = my_data.read()
+    my_data = str(my_data, encoding = 'utf-8')
+    split_data = my_data.split()
+    for word in split_data:
+        if(word.startswith('href')):
+            print(word)
+    
+    
 url = ask_user()
-get_page(url)
+url_page = get_page(url)
+find_links(url_page)
