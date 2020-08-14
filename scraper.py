@@ -29,11 +29,16 @@ def get_page(page):
 def find_links(my_data):
     my_data = my_data.read()
     my_data = str(my_data, encoding = 'utf-8') #needed to split data otherwise it is bytecode
+    links = re.findall(r'href="(.*?)">',my_data)
+    for link in links:
+        print(link)
+
+'''
     split_data = my_data.split()
     for word in split_data:
         if(word.startswith('href')):
             print(word)
-
+'''
 
 url = ask_user()
 url_page = get_page(url)
