@@ -1,4 +1,4 @@
-# this is a webcrawler
+# this is a webcrawler made with python 3.85
 import urllib.request
 import urllib.parse
 import re
@@ -29,9 +29,12 @@ def get_page(page):
 def find_links(my_data):
     my_data = my_data.read()
     my_data = str(my_data, encoding = 'utf-8') #needed to split data otherwise it is bytecode
+    #using regular expression to find all href in http document.
     links = re.findall(r'href="(.*?)">',my_data)
     for link in links:
         print(link)
+        #next I need to add page url to relative links
+
 
 '''
     split_data = my_data.split()
