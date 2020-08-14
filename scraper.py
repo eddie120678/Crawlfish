@@ -19,10 +19,11 @@ def ask_user():
 
 #basic get web page
 def get_page(page):
-
-    pageData = urllib.request.urlopen(page)
-    return pageData
-
+    try:
+        pageData = urllib.request.urlopen(page)
+        return pageData
+    except(e):
+        print(str(e))
 
 #find the links in data
 def find_links(my_data):
