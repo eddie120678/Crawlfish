@@ -3,11 +3,22 @@ import urllib.request
 import urllib.parse
 import re
 
+#variable to keep program keep_running
+keep_running = True
+
+def introduction():
+    print("*"*24)
+    print("* Welcome to Crawlfish *")
+    print("* The Best Web Crawler *")
+    print("*"*24)
+    print("\n")
 
 myHeader =  {'User-Agent':'Mozilla/5.0'}
 #ask user for web page if none given use default and if http forgotten it is appended
 def ask_user():
-    url = input("Enter a url for me to visit: ")
+
+
+    url = input("Enter a url for me to visit:(enter for default page) ")
     if url == "":
         url = "http://phobos.ninja"
         print("Fetching default page http://phobos.ninja because it is teh awesomeness!\n")
@@ -42,7 +53,12 @@ def find_links(my_data):
         if(word.startswith('href')):
             print(word)
 '''
+introduction()
 
-url = ask_user()
-url_page = get_page(url)
-find_links(url_page)
+while keep_running:
+    url = ask_user()
+    url_page = get_page(url)
+    find_links(url_page)
+    user_answer = input("Would you like to visit another page(y/n): ")
+    if user_answer.lower() == "n":
+        keep_running = False
