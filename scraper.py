@@ -5,6 +5,7 @@ import re
 
 #variable to keep program keep_running
 keep_running = True
+url = ''
 
 def introduction():
     print("*"*24)
@@ -42,9 +43,27 @@ def find_links(my_data):
     my_data = str(my_data, encoding = 'utf-8') #needed to split data otherwise it is bytecode
     #using regular expression to find all href in http document.
     links = re.findall(r'href="(.*?)">',my_data)
+
+    '''
+    the following code makes sure link and url are concatenated correctly
+    '''
+    
     for link in links:
-        print(link)
-        #next I need to add page url to relative links
+        if(not link.startswith('http')):
+            if(url.endswith('/') and not link.startswith('/')):
+                link = url + link
+                print(link)
+            elif(not url.endswith('/') and link.startswith('/')):
+                link = url + link
+                print(link)
+            elif(not url.endswith('/') and not link.startswith('/')):
+                link = url + '/' + link
+                print(link)
+            elif(url.endswith('/') and link.startswith('/')):
+                link = url + link.strip('/')
+                print(link)
+            else:
+                print("something went wrong you didn't account for idiot")
 
 
 '''
