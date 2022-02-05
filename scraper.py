@@ -36,8 +36,8 @@ def get_page(page):
     try:
         pageData = urllib.request.urlopen(page)
         return pageData
-    except(e):
-        print(str(e))
+    except:
+        print("Something has gone wrong here!")
 
 #function to display page stats
 def display_stats(linkn):
@@ -57,7 +57,7 @@ def find_links(my_data):
     '''
     the following code makes sure link and url are concatenated correctly
     '''
-    
+
     for link in links:
         if(link.startswith('http')):
             print(link)
@@ -81,7 +81,7 @@ def find_links(my_data):
                 print(link)
             else:
                 print("something went wrong you didn't account for idiot")
-        
+
     return link_count
 '''
     depricated function
